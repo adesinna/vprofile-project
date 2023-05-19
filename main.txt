@@ -1,0 +1,37 @@
+1. get an ubuntu instance
+
+2. Install docker and docker compose
+
+3. Next clone the source code
+    git clone -b docker https://github.com/adesinna/vprofile-project.git
+
+4. Check and review the 3 docker file
+
+5. Go to the vprofile root directory
+    sudo apt install openjdk-8-jdk -y && sudo apt install maven -y
+
+6. Next we build our artifact
+    mvn install # this will generate the artifact
+
+7. Next we build the images
+    app:
+        docker build -t adesinna/vprofileapp:v1 .
+
+    db:
+        docker build -t adesinna/vprofile-db:v1 .
+
+    web:
+        docker build -t adesinna/web:v1 .
+
+
+    memcache:
+        docker pull memcached
+
+    rabbitmq:
+        docker pull rabbitmq
+
+8. use docker compose up to run all of them
+    compose:
+        docker compose up
+===========================
+Multistage allows you to build automatically
